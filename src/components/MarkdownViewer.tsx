@@ -22,7 +22,7 @@ export default function MarkdownViewer({ children }: { children: string }) {
             <code {...props}>{children}</code>
           )
         },
-        img: (image) => <Image className="max-h-60 w-full object-cover" src={image?.src || ''} alt={image?.alt || ''} width={800} height={600} />,
+        img: (image) => <Image className="object-cover" src={image?.src || ''} alt={image?.alt || ''} width={800} height={600} />,
       }}
     >
       {children}
