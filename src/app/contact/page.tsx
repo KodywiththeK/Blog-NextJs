@@ -1,9 +1,15 @@
 import SendMail from '@/components/SendMail'
+import { Metadata } from 'next'
 import Link from 'next/link'
 import React from 'react'
 import { BsGithub, BsYoutube } from 'react-icons/bs'
 import { GoLinkExternal } from 'react-icons/go'
 import { SiVelog } from 'react-icons/si'
+
+export const metadata: Metadata = {
+  title: 'Contact Me',
+  description: 'send Email to Kody',
+}
 
 export default function ContactPage() {
   return (
