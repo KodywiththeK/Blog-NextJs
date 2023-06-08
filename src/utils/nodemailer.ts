@@ -21,7 +21,7 @@ const transporter = nodemailer.createTransport({
 export async function sendEmail({ from, subject, message }: EmailData) {
   const mailData = {
     to: process.env.AUTH_USER,
-    subject: `[Portfolio] ${subject}`,
+    subject: `[Blog] ${subject}`,
     from: from,
     //	html 옵션 또는 text 옵션 둘중 하나만 사용해야함
     html: `

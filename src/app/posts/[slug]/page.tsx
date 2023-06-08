@@ -1,6 +1,6 @@
 import PostContent from '@/components/PostContent'
 import ToNextOrPrev from '@/components/ToNextOrPrev'
-import { getPostData } from '@/service/posts'
+import { getFeaturedPosts, getPostData } from '@/service/posts'
 import Image from 'next/image'
 import React from 'react'
 
@@ -29,4 +29,11 @@ export default async function PostPage({ params: { slug } }: Props) {
       <ToNextOrPrev post={post} />
     </article>
   )
+}
+
+export async function generateStaticParams() {
+  const posts = await getFeaturedPosts()
+  return posts.map((post) => ({
+    slug: post.path,
+  }))
 }
