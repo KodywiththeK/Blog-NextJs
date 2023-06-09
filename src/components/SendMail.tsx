@@ -10,11 +10,12 @@ export default function SendMail() {
     message: '',
   }
 
-  const [banner, setBanner] = useState<{ message: string; state: 'success' | 'error' } | null>(null)
+  const [banner, setBanner] = useState<{ message: string; state: 'success' | 'error' | 'loading' } | null>(null)
   const [mailData, setMailData] = useState<EmailData>(mailDataInitialState)
 
   const onClickHandler = async (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault()
+    setBanner({ message: '💌 메일을 전송중입니다.', state: 'loading' })
     sendContactEmail(mailData)
       .then((res) => {
         setBanner({ message: `✅ ${res.message}`, state: 'success' })
@@ -31,7 +32,8 @@ export default function SendMail() {
   }
   return (
     <div className="mb-8 flex w-full flex-col gap-2 rounded-md bg-green-100 p-2 dark:bg-green-800 sm:p-7 md:p-10">
-      {banner && <div className={`my-2 rounded-lg ${banner.state === 'success' ? 'bg-green-300' : 'bg-red-200'} p-2 font-semibold`}>{banner.message}</div>}
+      {banner && banner.state !== 'loading' && <div className={`my-2 rounded-lg ${banner.state === 'success' ? 'bg-green-300' : 'bg-red-200'} p-2 font-semibold`}>{banner.message}</div>}
+      {banner && banner.state === 'loading' && <div className={`my-2 rounded-lg bg-yellow-300 p-2 font-semibold`}>{banner.message}</div>}
       <div className=" font-semibold">Your Email</div>
       <input placeholder="yourEmail@gmail.com(필수)" type={'email'} value={mailData.from} onChange={(e) => setMailData({ ...mailData, from: e.target.value })} id="from" name="from" required autoFocus className="mb-2 w-full rounded p-2 placeholder:text-neutral-600 placeholder:opacity-50 focus:outline-none dark:text-neutral-900" />
       <div className=" font-semibold">Title</div>
