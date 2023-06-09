@@ -7,7 +7,7 @@ export default function PostCard({ post: { title, description, date, category, p
   return (
     <Link href={`/posts/${path}`}>
       <article className="overflow-hidden rounded-md shadow-md transition-all hover:shadow-2xl">
-        <Image src={`/images/posts/${path}.png`} alt={title} width={300} height={200} className="w-full" />
+        <Image src={`/images/posts/${path}.png`} alt={title} width={300} height={165} className="w-full" />
         <div className="flex flex-col items-center p-2">
           <time className="self-end text-gray-700">{date.toString()}</time>
           <h3 className="text-lg font-bold">{title}</h3>

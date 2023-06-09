@@ -15,7 +15,6 @@ export type PostContent = Post & { content: string; prev: Post | null; next: Pos
 
 // 모든 데이터 가져오기
 export const getAllPosts = cache(async () => {
-  console.log('getAllPosts')
   const filePath = path.join(process.cwd(), 'data', 'posts.json')
   return readFile(filePath, 'utf-8')
     .then<Post[]>(JSON.parse)
